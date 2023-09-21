@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { postAdded } from './postsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAllUsers } from '../users/usersSlice';
+import { addNewPost } from './postsSlice';
 
 const AddPostForm = () => {
   const dispatch = useDispatch();
@@ -9,6 +10,7 @@ const AddPostForm = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [userId, setUserId] = useState('');
+  const [addRequestStatus, setAddRequestStatus] = useState('idle');
 
   //getting users from store
   const users = useSelector(selectAllUsers);
@@ -17,17 +19,26 @@ const AddPostForm = () => {
   const onContentChanged = (e) => setContent(e.target.value);
   const onAuthorChanged = (e) => setUserId(e.target.value);
 
-  const canSave = Boolean(title) && Boolean(content) && Boolean(userId);
+  const canSave =
+    [title, content, userId].every(Boolean) && addRequestStatus === 'idle';
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    //call function created inside slice
-    dispatch(postAdded(title, content, userId));
+    if (canSave) {
+      try {
+        setAddRequestStatus('pending');
+        dispatch(addNewPost({ title, body: content, userId })).unwrap();
 
-    setTitle('');
-    setContent('');
-    setUserId('');
+        setTitle('');
+        setContent('');
+        setUserId('');
+      } catch (error) {
+        console.error('Failder to save the post', error);
+      } finally {
+        setAddRequestStatus('idle');
+      }
+    }
   };
 
   const usersOptions = users.map((user) => {

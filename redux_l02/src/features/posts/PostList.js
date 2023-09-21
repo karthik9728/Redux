@@ -12,7 +12,6 @@ const PostList = () => {
   const dispatch = useDispatch();
 
   const posts = useSelector(selectAllPost);
-  console.log(posts);
   const postsStatus = useSelector(getPostsStatus);
   const error = useSelector(getPostsError);
 
