@@ -41,12 +41,16 @@ const AddPostForm = () => {
   return (
     <section>
       <h2>Add New Post</h2>
-      <form onSubmit={submitHandler}>
+      <form
+        onSubmit={submitHandler}
+        className="flex flex-col justify-center items-center mt-5"
+      >
         <label htmlFor="postTitle">Title</label>
         <input
           type="text"
           id="postTitle"
           value={title}
+          className="p-2 border border-gray-300 mb-2"
           onChange={onTitleChanged}
         />
         <label htmlFor="postContent">Content</label>
@@ -54,15 +58,25 @@ const AddPostForm = () => {
           type="text"
           id="postContent"
           value={content}
+          className="p-2 border border-gray-300 mb-2"
           onChange={onContentChanged}
         />
-        <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
+        <select
+          id="postAuthor"
+          className="p-2 border border-gray-600 mb-2"
+          value={userId}
+          onChange={onAuthorChanged}
+        >
           <option value="" selected disabled>
             Select Author
           </option>
           {usersOptions}
         </select>
-        <button type="submit" disabled={!canSave}>
+        <button
+          type="submit"
+          disabled={!canSave}
+          className="px-8 py-2 p-2 bg-green-400 text-white rounded-lg hover:bg-green-800 duration-500 cursor-pointer"
+        >
           Add
         </button>
       </form>
