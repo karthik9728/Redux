@@ -22,11 +22,11 @@ import axios from 'axios';
 //     content: 'Slice is easy way to maintain gobal state',
 //     date: sub(new Date(), { minutes: 5 }).toISOString(),
 //     reactions: {
-//       thumbsUp: 0,
-//       wow: 0,
-//       heart: 0,
-//       rocket: 0,
-//       coffee: 0,
+// thumbsUp: 0,
+// wow: 0,
+// heart: 0,
+// rocket: 0,
+// coffee: 0,
 //     },
 //   },
 // ];
@@ -108,10 +108,10 @@ const postsSlice = createSlice({
         post.date = sub(new Date(), { minutes: ++min }).toISOString();
         post.reactions = {
           thumbsUp: 0,
-          hooray: 0,
+          wow: 0,
           heart: 0,
           rocket: 0,
-          eyes: 0,
+          coffee: 0,
         };
         return post;
       });
