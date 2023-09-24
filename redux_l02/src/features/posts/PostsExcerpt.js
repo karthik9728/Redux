@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const PostsExcerpt = ({ post }) => {
   return (
     <article className="border border-gray-900 p-2">
-      <h3>{post.title}</h3>
+      <h2 className="text-xl font-bold">{post.title}</h2>
       <p>{post.body.substring(0, 75)}...</p>
       <Link style={{ color: 'blue' }} to={`post/${post.id}`}>
         View Post

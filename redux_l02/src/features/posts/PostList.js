@@ -40,7 +40,6 @@ const PostList = () => {
   }
   return (
     <section className="mt-6">
-      <h2 className="text-2xl font-bold">Posts</h2>
       <div className="grid grid-cols-4 justify-center items-start gap-2 pt-10">
         {content}
       </div>
